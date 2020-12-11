@@ -12,12 +12,12 @@ namespace C1_CafeRepo
         private List<Meal> _listOfMeals = new List<Meal>();
 
         //Create
-        public void AddMenuToList(Meal menu)
+        public void AddMealToList(Meal menu)
         {
             _listOfMeals.Add(menu);
         }
         //Read
-        public List<Meal> ReadMenuList()
+        public List<Meal> ReadMealList()
         {
             return _listOfMeals;
         }

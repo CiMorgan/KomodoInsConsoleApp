@@ -12,9 +12,9 @@ namespace C1_CafeRepo
         public string ItemName { get; set; }
         public string Description { get; set; }
         public List<string> Ingredients { get; set; }
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public Meal() { }
-        public Meal(int itemNumber, string itemName, string description, List<string> ingredients, decimal price)
+        public Meal(int itemNumber, string itemName, string description, List<string> ingredients, double price)
         {
             ItemNumber = itemNumber;
             ItemName = itemName;
