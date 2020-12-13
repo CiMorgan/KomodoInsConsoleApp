@@ -9,7 +9,7 @@ namespace GoldBadgeConsoleApp
 {
     class ProgramUI
     {
-        private MealRepo _mealRepo = new MealRepo();    
+        private MenuRepo _menuRepo = new MenuRepo();    
         public void Run()
         {
             EstablishedMealList();
@@ -72,11 +72,11 @@ namespace GoldBadgeConsoleApp
         //Display list of meals including number, name, price
         private void DisplayAllMeals()
         {
-            List<Meal> listOfMeals = _mealRepo.ReadMealList();
+            List<Menu> listOfMeals = _menuRepo.ReadMealList();
             Console.WriteLine("\n");
             for (int j = 0; j <= listOfMeals.Count; j++)
             {
-                Meal printMeal = _mealRepo.GetMealByNumber(j + 1);
+                Menu printMeal = _menuRepo.GetMealByNumber(j + 1);
                 if (printMeal != null)
                 {
                     Console.WriteLine($"#{printMeal.ItemNumber} - {printMeal.ItemName}    Price:  ${printMeal.Price}");
@@ -86,12 +86,12 @@ namespace GoldBadgeConsoleApp
         //Display detail of a meal (number, name, description, ingredients, price)
         private void DisplayMealInDetail()
         {
-            List<Meal> listOfMeals = _mealRepo.ReadMealList();
+            List<Menu> listOfMeals = _menuRepo.ReadMealList();
             Console.Clear();
             Console.WriteLine("\n");
             for (int j = 0; j <= listOfMeals.Count; j++)
             {
-                Meal printMeal = _mealRepo.GetMealByNumber(j + 1);
+                Menu printMeal = _menuRepo.GetMealByNumber(j + 1);
                 if (printMeal != null)
                 {
                     Console.WriteLine($"#{printMeal.ItemNumber} - {printMeal.ItemName}");
@@ -99,7 +99,7 @@ namespace GoldBadgeConsoleApp
             }
             Console.WriteLine("Enter the number of the meal that you would like to see in detail:");
             int mealDetail = int.Parse(Console.ReadLine());
-            Meal getMeal = _mealRepo.GetMealByNumber(mealDetail);
+            Menu getMeal = _menuRepo.GetMealByNumber(mealDetail);
             Console.WriteLine($"#{getMeal.ItemNumber} - {getMeal.ItemName}  Price ${getMeal.Price}\n" +
                 $"{getMeal.Description}\n" +
                 $"The {getMeal.ItemName} meal contains the following ingredients:\n");
@@ -111,12 +111,12 @@ namespace GoldBadgeConsoleApp
         //Create a new meal
         private void AddMeal()
         {
-            List<Meal> listOfMeals = _mealRepo.ReadMealList();
+            List<Menu> listOfMeals = _menuRepo.ReadMealList();
             List<string> ingredList = new List<string>();
             int newNum = listOfMeals.Count + 1;
             for (int j = 0; j < listOfMeals.Count; j++)
             {
-                Meal numCheck = _mealRepo.GetMealByNumber(j + 1);
+                Menu numCheck = _menuRepo.GetMealByNumber(j + 1);
                 if (numCheck == null)
                 {
                     newNum = j + 1;
@@ -142,18 +142,18 @@ namespace GoldBadgeConsoleApp
                 }
                 added = true;
             }
-            Meal newMeal = new Meal(newNum, newName, newDescription, ingredList, newPrice);
-            _mealRepo.AddMealToList(newMeal);
+            Menu newMeal = new Menu(newNum, newName, newDescription, ingredList, newPrice);
+            _menuRepo.AddMealToList(newMeal);
         }
         //Update an existing meal
         private void UpdateMeal()
         {
             Console.Clear();
-            List<Meal> listOfMeals = _mealRepo.ReadMealList();
+            List<Menu> listOfMeals = _menuRepo.ReadMealList();
             DisplayAllMeals();
             Console.WriteLine("\nPlease enter the number of the meal you would like to update.\n");
             int updateNum = int.Parse(Console.ReadLine());
-            Meal getMeal = _mealRepo.GetMealByNumber(updateNum);
+            Menu getMeal = _menuRepo.GetMealByNumber(updateNum);
             string updateName = getMeal.ItemName;
             string updateDescription = getMeal.Description;
             double updatePrice = getMeal.Price;
@@ -270,18 +270,18 @@ namespace GoldBadgeConsoleApp
                     newIngred = false;
                 }
             }
-            Meal updateMeal = new Meal(updateNum, updateName, updateDescription, updateIngred, updatePrice);
-            _mealRepo.UpdateExistingMeal(updateNum, updateMeal);
+            Menu updateMeal = new Menu(updateNum, updateName, updateDescription, updateIngred, updatePrice);
+            _menuRepo.UpdateExistingMeal(updateNum, updateMeal);
         }
         //Delete a meal
         private void DeleteMeal()
         {
             Console.Clear();
-            List<Meal> listOfMeals = _mealRepo.ReadMealList();
+            List<Menu> listOfMeals = _menuRepo.ReadMealList();
             DisplayAllMeals();
             Console.WriteLine("\nPlease enter the number of the meal you would like to delete.\n");
             int delNum = int.Parse(Console.ReadLine());
-            bool delMeal = _mealRepo.DeleteExistingMeal(delNum);
+            bool delMeal = _menuRepo.DeleteExistingMeal(delNum);
             if (delMeal)
             {
                 Console.WriteLine($"Meal #{delNum} was successfully deleted.\n");
@@ -330,17 +330,17 @@ namespace GoldBadgeConsoleApp
                 "Au jus",
                 "cheese"
             };
-            Meal meal1 = new Meal(1, "Wings", "Traditional hand-breaded wings tossed in your choice of Buffalo or Spicy Buffalo sauce with celery sticks and ranch or blue cheese for dipping", ingredList1, 10.99);
-            Meal meal2 = new Meal(2, "Cheese Fries", "Crispy seasoned French fries topped with mixed cheeses, bacon, and fried jalapeños with ranch", ingredList2, 6.99);
-            Meal meal3 = new Meal(3, "Onion Rings", "Thick cut, panko-breaded onion rings with ranch.", ingredList3, 6.49);
-            Meal meal4 = new Meal(4, "All American Burger", "100% Angus burger, American cheese, tomato and lettuce slaw (shredded lettuce, chopped pickle and mayo).", ingredList4, 9.99);
-            Meal meal5 = new Meal(5, "Philly Cheese Steak", "Roasted and seasoned beef topped with grilled onions and peppers, melted provel cheese on a toasted hoagie roll.", ingredList5, 11.49);
+            Menu meal1 = new Menu(1, "Wings", "Traditional hand-breaded wings tossed in your choice of Buffalo or Spicy Buffalo sauce with celery sticks and ranch or blue cheese for dipping", ingredList1, 10.99);
+            Menu meal2 = new Menu(2, "Cheese Fries", "Crispy seasoned French fries topped with mixed cheeses, bacon, and fried jalapeños with ranch", ingredList2, 6.99);
+            Menu meal3 = new Menu(3, "Onion Rings", "Thick cut, panko-breaded onion rings with ranch.", ingredList3, 6.49);
+            Menu meal4 = new Menu(4, "All American Burger", "100% Angus burger, American cheese, tomato and lettuce slaw (shredded lettuce, chopped pickle and mayo).", ingredList4, 9.99);
+            Menu meal5 = new Menu(5, "Philly Cheese Steak", "Roasted and seasoned beef topped with grilled onions and peppers, melted provel cheese on a toasted hoagie roll.", ingredList5, 11.49);
 
-            _mealRepo.AddMealToList(meal1);
-            _mealRepo.AddMealToList(meal2);
-            _mealRepo.AddMealToList(meal3);
-            _mealRepo.AddMealToList(meal4);
-            _mealRepo.AddMealToList(meal5);
+            _menuRepo.AddMealToList(meal1);
+            _menuRepo.AddMealToList(meal2);
+            _menuRepo.AddMealToList(meal3);
+            _menuRepo.AddMealToList(meal4);
+            _menuRepo.AddMealToList(meal5);
         }
     }
 }

@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FC850DD5-2EEB-4A34-B989-A3E237F001A3}</ProjectGuid>
+    <ProjectGuid>{D14A914A-AF74-425A-91A7-9E8A57333A22}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>C1_CafeTests</RootNamespace>
-    <AssemblyName>C1_CafeTests</AssemblyName>
+    <RootNamespace>C2_ClaimsTests</RootNamespace>
+    <AssemblyName>C2_ClaimsTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -49,16 +49,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuRepoTests.cs" />
+    <Compile Include="ClaimRepoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\01_CafeRepo\C1_CafeRepo.csproj">
-      <Project>{95dc39b2-7635-4058-9aec-0aeb1f1d8a6c}</Project>
-      <Name>C1_CafeRepo</Name>
+    <ProjectReference Include="..\C2_ClaimsRepository\C2_ClaimsRepository.csproj">
+      <Project>{c7c4ef29-af28-45b4-b07d-60b1605ab9dc}</Project>
+      <Name>C2_ClaimsRepository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

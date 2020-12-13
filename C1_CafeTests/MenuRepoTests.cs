@@ -6,10 +6,10 @@ using System.Collections.Generic;
 namespace C1_CafeTests
 {
     [TestClass]
-    public class MealRepoTests
+    public class MenuRepoTests
     {
-        private MealRepo _repo;
-        private Meal _meal;
+        private MenuRepo _repo;
+        private Menu _menu;
         List<string> ingredList1 = new List<string>
             {
                 "chicken",
@@ -19,9 +19,9 @@ namespace C1_CafeTests
         [TestInitialize]
         public void Arrange()
         {
-            _repo = new MealRepo();
-            _meal = new Meal(1, "Wings", "Traditional hand-breaded wings tossed in your choice of Buffalo or Spicy Buffalo sauce with celery sticks and ranch or blue cheese for dipping", ingredList1, 10.99);
-            _repo.AddMealToList(_meal);
+            _repo = new MenuRepo();
+            _menu = new Menu(1, "Wings", "Traditional hand-breaded wings tossed in your choice of Buffalo or Spicy Buffalo sauce with celery sticks and ranch or blue cheese for dipping", ingredList1, 10.99);
+            _repo.AddMealToList(_menu);
         }
 
         //Test Add meal to list method
@@ -35,10 +35,10 @@ namespace C1_CafeTests
                 "bacon",
                 "jalapenos"
             };
-            Meal meal = new Meal(2, "Cheese Fries", "Crispy seasoned French fries topped with mixed cheeses, bacon, and fried jalapeños with ranch", ingredList2, 6.99);
-            MealRepo repository = new MealRepo();
+            Menu meal = new Menu(2, "Cheese Fries", "Crispy seasoned French fries topped with mixed cheeses, bacon, and fried jalapeños with ranch", ingredList2, 6.99);
+            MenuRepo repository = new MenuRepo();
             repository.AddMealToList(meal);
-            Meal mealAddToList = repository.GetMealByName("Cheese Fries");
+            Menu mealAddToList = repository.GetMealByName("Cheese Fries");
             Assert.IsNotNull(mealAddToList);
         }
 
@@ -49,7 +49,7 @@ namespace C1_CafeTests
 
         public void GetMealByNumber_ShouldMatchBool(int origNum, bool ShouldUpdate)
         {
-            Meal getMeal = _repo.GetMealByNumber(origNum);
+            Menu getMeal = _repo.GetMealByNumber(origNum);
             string getMealName = getMeal.ItemName;
             string realName = "Wings";
             Assert.AreEqual(getMealName, realName);
@@ -59,7 +59,7 @@ namespace C1_CafeTests
         [TestMethod]
         public void GetMealByName_ShouldMatchBool()
         {
-            Meal getMeal = _repo.GetMealByName("Wings");
+            Menu getMeal = _repo.GetMealByName("Wings");
             string getMealName = getMeal.ItemName;
             string realName = "Wings";
             Assert.AreEqual(getMealName, realName);
@@ -69,7 +69,7 @@ namespace C1_CafeTests
         [TestMethod]
         public void UpdateMealList_ShouldReturnTrue()
         {
-            Meal newMeal = new Meal(1, "Buffalo Wings", "Traditional hand-breaded wings tossed in your choice of Buffalo or Spicy Buffalo sauce with celery sticks and ranch or blue cheese for dipping", ingredList1, 10.99);
+            Menu newMeal = new Menu(1, "Buffalo Wings", "Traditional hand-breaded wings tossed in your choice of Buffalo or Spicy Buffalo sauce with celery sticks and ranch or blue cheese for dipping", ingredList1, 10.99);
             bool updateListResults = _repo.UpdateExistingMeal(1, newMeal);
             Assert.IsTrue(updateListResults);
         }
@@ -80,7 +80,7 @@ namespace C1_CafeTests
 
         public void UpdateMealList_ShouldGiveBoolMatch(int mealNum, bool shouldUpdate)
         {
-            Meal newMeal = new Meal(1, "Buffalo Wings", "Traditional hand-breaded wings tossed in your choice of Buffalo or Spicy Buffalo sauce with celery sticks and ranch or blue cheese for dipping", ingredList1, 10.99);
+            Menu newMeal = new Menu(1, "Buffalo Wings", "Traditional hand-breaded wings tossed in your choice of Buffalo or Spicy Buffalo sauce with celery sticks and ranch or blue cheese for dipping", ingredList1, 10.99);
             bool updatedMealStatus = _repo.UpdateExistingMeal(mealNum, newMeal);
 
             Assert.AreEqual(updatedMealStatus, shouldUpdate);

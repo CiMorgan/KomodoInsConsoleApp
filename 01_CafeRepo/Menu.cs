@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace C1_CafeRepo
 {
-    public class Meal
+    public class Menu
     {
         public int ItemNumber { get; set; }
         public string ItemName { get; set; }
         public string Description { get; set; }
         public List<string> Ingredients { get; set; }
         public double Price { get; set; }
-        public Meal() { }
-        public Meal(int itemNumber, string itemName, string description, List<string> ingredients, double price)
+        public Menu() { }
+        public Menu(int itemNumber, string itemName, string description, List<string> ingredients, double price)
         {
             ItemNumber = itemNumber;
             ItemName = itemName;

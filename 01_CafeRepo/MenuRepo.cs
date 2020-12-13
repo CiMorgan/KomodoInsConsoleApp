@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 
 namespace C1_CafeRepo
 {
-    public class MealRepo
+    public class MenuRepo
     {
-        private List<Meal> _listOfMeals = new List<Meal>();
+        private List<Menu> _listOfMeals = new List<Menu>();
 
         //Create
-        public void AddMealToList(Meal menu)
+        public void AddMealToList(Menu menu)
         {
             _listOfMeals.Add(menu);
         }
         //Read
-        public List<Meal> ReadMealList()
+        public List<Menu> ReadMealList()
         {
             return _listOfMeals;
         }
         //Update
-        public bool UpdateExistingMeal(int originalMealNumber, Meal newMeal)
+        public bool UpdateExistingMeal(int originalMealNumber, Menu newMeal)
         {
-            Meal oldMeal = GetMealByNumber(originalMealNumber);
+            Menu oldMeal = GetMealByNumber(originalMealNumber);
             if (oldMeal != null)
             {
                 oldMeal.ItemNumber = newMeal.ItemNumber;
@@ -43,7 +43,7 @@ namespace C1_CafeRepo
         //Delete
         public bool DeleteExistingMeal(int delMealNumber)
         {
-            Meal meal = GetMealByNumber(delMealNumber);
+            Menu meal = GetMealByNumber(delMealNumber);
             if (meal == null)
             {
                 return false;
@@ -60,9 +60,9 @@ namespace C1_CafeRepo
             }
         }
         //Helper
-        public Meal GetMealByName(string itemName)
+        public Menu GetMealByName(string itemName)
         {
-            foreach(Meal meal in _listOfMeals)
+            foreach(Menu meal in _listOfMeals)
             {
                 if (meal.ItemName == itemName) 
                 {
@@ -71,9 +71,9 @@ namespace C1_CafeRepo
             }
             return null;
         }
-        public Meal GetMealByNumber(int itemNumber)
+        public Menu GetMealByNumber(int itemNumber)
         {
-            foreach (Meal meal in _listOfMeals)
+            foreach (Menu meal in _listOfMeals)
             {
                 if (meal.ItemNumber == itemNumber)
                 {
