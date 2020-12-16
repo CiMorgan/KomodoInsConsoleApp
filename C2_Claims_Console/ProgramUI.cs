@@ -77,43 +77,51 @@ namespace C2_Claims_Console
         private void TakeNextClaim()
         {
             List<Claim> listOfClaims = _claimRepo.GetClaimList();
-            Claim nextClaim = listOfClaims[0];
-            Console.WriteLine("\n\nHere are the details for the next claim to be handled.");
-            Console.WriteLine($"\n" +
-                $"         ClaimID: {nextClaim.ClaimID}\n" +
-                $"            Type: {nextClaim.TypeOfClaim}\n" +
-                $"     Description: {nextClaim.Description}\n" +
-                $"          Amount: {nextClaim.ClaimAmount}\n" +
-                $"Date of Incident: {nextClaim.DateOfIncident}\n" +
-                $"   Date of Claim: {nextClaim.DateOfClaim}\n" +
-                $"         IsValid: {nextClaim.IsValid}\n");
-            Console.WriteLine("Do you want to deal with this claim now?\n" +
-                              "    1. Yes\n" +
-                              "    2. No\n" +
-                              "Please enter 1 or 2.");
-            string nextClaimInput = Console.ReadLine();
-            bool nextClaimNotValid = true;
-            bool wasHandled = false;
-            while (nextClaimNotValid)
+            if (listOfClaims.Count == 0)
             {
-                switch (nextClaimInput)
-                {
-                    case "1":
-                        wasHandled = _claimRepo.RemoveClaimFromList(1);
-                        nextClaimNotValid = false;
-                        break;
-                    case "2":
-                        nextClaimNotValid = false;
-                        break;
-                    default:
-                        Console.WriteLine("Please enter 1 or 2.");
-                        nextClaimInput = Console.ReadLine();
-                        break;
-                }
+                Console.WriteLine("We are fantastic claims agents. There are no more claims.");
             }
-            if (wasHandled)
+            else
             {
-                Console.WriteLine($"ClaimID #{nextClaim.ClaimID} was handled and has been removed from the queue.");
+                Claim nextClaim = listOfClaims[0];
+                Console.WriteLine("\n\nHere are the details for the next claim to be handled.");
+                Console.WriteLine($"\n" +
+                    $"         ClaimID: {nextClaim.ClaimID}\n" +
+                    $"            Type: {nextClaim.TypeOfClaim}\n" +
+                    $"     Description: {nextClaim.Description}\n" +
+                    $"          Amount: {nextClaim.ClaimAmount}\n" +
+                    $"Date of Incident: {nextClaim.DateOfIncident}\n" +
+                    $"   Date of Claim: {nextClaim.DateOfClaim}\n" +
+                    $"         IsValid: {nextClaim.IsValid}\n");
+                Console.WriteLine("Do you want to deal with this claim now?\n" +
+                                  "    1. Yes\n" +
+                                  "    2. No\n" +
+                                  "Please enter 1 or 2.");
+                string nextClaimInput = Console.ReadLine();
+                bool nextClaimNotValid = true;
+                bool wasHandled = false;
+                while (nextClaimNotValid)
+                {
+                    switch (nextClaimInput)
+                    {
+                        case "1":
+                            int claimID = nextClaim.ClaimID;
+                            wasHandled = _claimRepo.RemoveClaimFromList(claimID);
+                            nextClaimNotValid = false;
+                            break;
+                        case "2":
+                            nextClaimNotValid = false;
+                            break;
+                        default:
+                            Console.WriteLine("Please enter 1 or 2.");
+                            nextClaimInput = Console.ReadLine();
+                            break;
+                    }
+                }
+                if (wasHandled)
+                {
+                    Console.WriteLine($"ClaimID #{nextClaim.ClaimID} was handled and has been removed from the queue.");
+                }
             }
         }
 
@@ -122,7 +130,9 @@ namespace C2_Claims_Console
         {
             List<Claim> listOfClaims = _claimRepo.GetClaimList();
             Console.Clear();
-            int newID = listOfClaims.Count + 1;
+            int lastID = listOfClaims.Count;
+            Claim claimID = listOfClaims[lastID - 1];
+            int newID = claimID.ClaimID + 1;
             Console.WriteLine("\nWhat is the type of Claim?\n" +
                 "1. Car\n" +
                 "2. Home\n" +
