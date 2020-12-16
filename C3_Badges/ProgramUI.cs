@@ -65,8 +65,25 @@ namespace C3_Badges
             Badge newBadge = new Badge();
             Dictionary<int, List<string>> badgeDictionary = _badgeRepo.GetBadgeDictionary();
             Console.Clear();
-            Console.WriteLine("What is the number on the badge?");
-            int newBadgeNum = int.Parse(Console.ReadLine());
+            int newBadgeNum = 0;
+            bool validBadgeNum = false;
+            Console.WriteLine("What is the number on the new badge?");
+            newBadgeNum = int.Parse(Console.ReadLine());
+            while (!validBadgeNum)
+            {
+                bool currentNum = badgeDictionary.ContainsKey(newBadgeNum);
+                if (currentNum)
+                {
+                    Console.WriteLine("That badge is already in use. Please verify badge number of the new card.");
+                    Console.WriteLine("What is the number on the new badge?");
+                    newBadgeNum = int.Parse(Console.ReadLine());
+                    validBadgeNum = false;
+                }
+                else
+                {
+                    validBadgeNum = true;
+                }
+            }
             List<string> newRoomList = new List<string>();
             bool addDoor = true;
             while (addDoor)
@@ -76,12 +93,21 @@ namespace C3_Badges
                 newRoomList.Add(door);
                 Console.WriteLine("Would you like to add another door (y/n)");
                 string doorOption = Console.ReadLine().ToLower();
-                if (doorOption == "n")
+                if (doorOption != "y")
                 {
-                    addDoor = false;
+                    if (doorOption == "n")
+                    {
+                        addDoor = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter y or n.");
+                        doorOption = Console.ReadLine().ToLower();
+                    }
                 }
             }
             newBadge.BadgeID = newBadgeNum;
+            newRoomList.Sort();
             newBadge.DoorNames = newRoomList;
             _badgeRepo.AddBadgeToList(newBadge);
             Console.WriteLine($"Badge number {newBadge.BadgeID} has been added.");
@@ -90,33 +116,108 @@ namespace C3_Badges
         private void EditBadge()
         {
             Dictionary<int, List<string>> badgeDictionary = _badgeRepo.GetBadgeDictionary();
-            Console.Clear();
-            DisplayAllBadges();
-            Console.WriteLine("What is the badge number to update?");
-            int updateBadgeNum = int.Parse(Console.ReadLine());
-            Badge updateBadge = _badgeRepo.GetBadgeByID(updateBadgeNum);
-            if (updateBadge != null)
+            int updateBadgeNum = 0; 
+            bool notValidBadge = true;
+            while (notValidBadge)
             {
-                List<string> updateDoorList = updateBadge.DoorNames;
-                string currentRoomString = "";
-                for (int i = 1; i < updateDoorList.Count; i++)
+                DisplayAllBadges();
+                Console.WriteLine("\n\nWhat is the badge number to update?");
+                updateBadgeNum = int.Parse(Console.ReadLine());
+                if (badgeDictionary.ContainsKey(updateBadgeNum))
                 {
-                    currentRoomString = currentRoomString + updateDoorList[i - 1] + ", ";
+                    Console.Clear();
+                    Console.WriteLine("That is a valid badge number.");
+                    notValidBadge = false;
                 }
-                currentRoomString = currentRoomString + updateDoorList[updateDoorList.Count - 1];
-                Console.WriteLine($"{updateBadgeNum} has access to doors: {currentRoomString}");
-                Console.WriteLine("\nWhat would you like to do?\n" +
-                    "1. Remove a door\n" +
-                    "2. Add a door\n" +
-                    "Please enter 1 or 2.");
+                else
+                {
+                    Console.WriteLine("\nThat is not a valid badge number. Please enter a valid number.\n");
+                }
             }
-            else
+            Badge updateBadge = _badgeRepo.GetBadgeByID(updateBadgeNum);
+            List<string> updateDoorList = updateBadge.DoorNames;
+            bool notDoneAdd = true;
+            bool notDoneSub = true;
+            while (notDoneAdd || notDoneSub)
             {
-                Console.WriteLine("That is not a valid badge number.");
-            }
+                Console.WriteLine("\nWhat would you like to do?\n" +
+                                  "1. Remove a door\n" +
+                                  "2. Add a door\n" +
+                                  "3. Exit update\n" +
+                                  "\nPlease enter 1, 2, or 3.");
+                string updateInput = Console.ReadLine();
+                switch (updateInput)
+                {
+                    case "1":
+                        Console.Clear();
+                        Console.WriteLine($"\nWe are updating badge: {updateBadgeNum}\n");
+                        DisplayDoorNames(updateBadge);
+                        Console.WriteLine("\nWhich door(s) would you like to remove.\n" +
+                                          "Press return / enter between each door you would like to remove.\n" +
+                                          "Enter 'Done' when complete.\n");
+                        string delDoor = Console.ReadLine();
+                        string delDoorStr = "";
+                        while (delDoor != "done" && delDoor != "Done")
+                        {
+                            bool delBool = updateDoorList.Remove(delDoor);
+                            if (!delBool)
+                            {
+                                Console.WriteLine($"Door {delDoor} could not be deleted.");
+                            }
+                            else
+                            {
+                                delDoorStr = delDoorStr + " " + delDoor;
 
+                            }
+                            delDoor = Console.ReadLine();
+                        }
+                        Console.WriteLine($"\nThe following doors were removed from badge {updateBadgeNum}: {delDoorStr}");
+                        notDoneSub = false;
+                        break;
+                    case "2":
+                        Console.Clear();
+                        Console.WriteLine($"\nWe are updating badge: {updateBadgeNum}\n");
+                        DisplayDoorNames(updateBadge);
+                        Console.WriteLine("\nWhich door(s) would you like to add.\n" +
+                                          "Press return / enter between each door you would like to add.\n" +
+                                          "Enter 'Done' when complete.\n");
+                        string addDoor = Console.ReadLine();
+                        string addDoorStr = "";
+                        while (addDoor != "done" && addDoor != "Done")
+                        {
+                            bool newDoor = updateDoorList.Contains(addDoor);
+                            if (!newDoor)
+                            {
+                                updateDoorList.Add(addDoor);
+                                addDoorStr = addDoorStr + " " + addDoor;
+                            }
+                            addDoor = Console.ReadLine();
+                        }
+                        Console.WriteLine($"\nThe following doors were added to badge {updateBadgeNum}: {addDoorStr}");
+                        notDoneAdd = false;
+                        break;
+                    case "3":
+                        notDoneAdd = false;
+                        notDoneSub = false;
+                        break;
+                    default:
+                        Console.WriteLine("Please enter 1, 2, or 3.");
+                        break;
+                }
+                updateDoorList.Sort();
+                Badge updatedBadge = new Badge(updateBadgeNum, updateDoorList);
+                bool badgeSuccessUpdate = _badgeRepo.UpdateExistingBadge(updateBadgeNum, updatedBadge);
+                if (badgeSuccessUpdate)
+                {
+                    Console.WriteLine($"Badge number {updateBadgeNum} was successfully updated.");
+                }
+                else
+                {
+                    Console.WriteLine("No badge was updated at this time.");
+                }
+            }
         }
-        //Case 3: list all badges
+        //Case 3: list all badges and their door access on console
         private void DisplayAllBadges()
         {
             Dictionary<int, List<string>> badgeDictionary = _badgeRepo.GetBadgeDictionary();
@@ -130,13 +231,28 @@ namespace C3_Badges
                 }
                 roomString = roomString + entry.Value[entry.Value.Count-1];
                 Console.WriteLine($"{entry.Key}        {roomString}");
-
             }
-
         }
+        //Helper method: display all doors to which a particular badge has access
+        private void DisplayDoorNames(Badge badge)
+        {
+            string doorString = "";
 
-
-
+            if (badge.DoorNames.Count != 0)
+            {
+                for (int k = 0; k < badge.DoorNames.Count - 1; k++)
+                {
+                    doorString = doorString + badge.DoorNames[k] + ", ";
+                }
+                doorString = doorString + badge.DoorNames[badge.DoorNames.Count - 1];
+                Console.WriteLine($"{badge.BadgeID} has access to: {doorString}");
+            }
+            if (badge.DoorNames.Count == 0)
+            {
+                Console.WriteLine("\nThis badge currently has no door access.");
+            }
+        }
+        //Established badge list to intially populate badge dictionary and list.
         private void EstablishedBadgeList()
         {
             List<string> list1 = new List<string>();
