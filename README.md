@@ -8,7 +8,7 @@ Table of Contents
 4. Contact information
 5. Acknowlegments
 
-1. About project: Developed as the final project for completion of Gold Badge at Eleven-Fifty Academy. This project consists of five console applications to assist Komodo Insurance Team Members in our Cafe, Claims Department, Security Administration, Workplace Happiness Center, and Outreach.
+#1 About project: Developed as the final project for completion of Gold Badge at Eleven-Fifty Academy. This project consists of five console applications to assist Komodo Insurance Team Members in our Cafe, Claims Department, Security Administration, Workplace Happiness Center, and Outreach.
 
 Console Application 1 (C1_Cafe): contains the files C1_CafeRepo, C1_CafeTests, and C1_CafeConsole (as GoldBadgeConsoleApp in GitHub). Designed for the manager of the Komodo Cafe. this application allows the user to create, update, delete, and display meals from our extensive Cafe menu. Each meal (Class: Menu) contains a menu number for quick identification, the name and a brief description of the meal, a list of ingredients, and the selling price.
 
@@ -20,11 +20,11 @@ Console Application 4 (C4_Outings): contains the files C4_OutingsRepository, C4_
 
 Console Application 5 (C5_Greeting): contains the files C5_GreetingsRepository, C5_GreetingsTests, and C5_GreetingsConsole. Designed for our Outreach Center, this application allows the user to design emails that specifically target three populations: current customers, former customers, and potential new customers.
 
-2. Languages: All console applications produced using C# and .net.
+#2 Languages: All console applications produced using C# and .net.
 
-3. Getting Started: I have no idea what you need to run this in the real world. Works like a charm on Visual Studio Code, but I'm pretty sure the average Komodo Insurance Team Member doesn't have VSC on their computer. Hopefully we will learn how to do this as part of Blue Badge. 
+#3 Getting Started: I have no idea what you need to run this in the real world. Works like a charm on Visual Studio Code, but I'm pretty sure the average Komodo Insurance Team Member doesn't have VSC on their computer. Hopefully we will learn how to do this as part of Blue Badge. 
 
-4. Cindy Morgan camorgan70@gmail.com
+#4 Cindy Morgan camorgan70@gmail.com
 
-5. This product was produced in Visual Studio Code with guidance and direction from Eleven Fifty Academy.
+#5 This product was produced in Visual Studio Code with guidance and direction from Eleven Fifty Academy.
 
