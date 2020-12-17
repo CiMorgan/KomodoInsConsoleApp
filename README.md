@@ -24,7 +24,7 @@ Console Application 5 (C5_Greeting): contains the files C5_GreetingsRepository, 
 
 #3 Getting Started: I have no idea what you need to run this in the real world. Works like a charm on Visual Studio Code, but I'm pretty sure the average Komodo Insurance Team Member doesn't have VSC on their computer. Hopefully we will learn how to do this as part of Blue Badge. 
 
-#4 Cindy Morgan camorgan70@gmail.com
+#4 Contact Information: Cindy Morgan camorgan70@gmail.com
 
-#5 This product was produced in Visual Studio Code with guidance and direction from Eleven Fifty Academy.
+#5 Acknowledgements: This product was produced in Visual Studio Code with guidance and direction from Eleven Fifty Academy.
 
