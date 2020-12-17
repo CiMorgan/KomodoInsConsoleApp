@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GoldBadgeConsoleApp
+namespace C1_CafeConsole
 {
     class ProgramUI
     {

@@ -225,11 +225,14 @@ namespace C3_Badges
             foreach(KeyValuePair<int, List<string>> entry in badgeDictionary)
             {
                 string roomString = "";
-                for (int i = 1; i < entry.Value.Count; i++)
+                if (entry.Value.Count != 0)
                 {
-                    roomString = roomString + entry.Value[i-1] + ", ";
+                    for (int i = 1; i < entry.Value.Count; i++)
+                    {
+                        roomString = roomString + entry.Value[i - 1] + ", ";
+                    }
+                    roomString = roomString + entry.Value[entry.Value.Count - 1];
                 }
-                roomString = roomString + entry.Value[entry.Value.Count-1];
                 Console.WriteLine($"{entry.Key}        {roomString}");
             }
         }

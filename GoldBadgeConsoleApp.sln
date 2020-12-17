@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C1_CafeConsole", "GoldBadgeConsoleApp\C1_CafeConsole.csproj", "{07EE0798-A260-4BB0-BFC9-6B450D281153}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C1_CafeRepo", "01_CafeRepo\C1_CafeRepo.csproj", "{95DC39B2-7635-4058-9AEC-0AEB1F1D8A6C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C1_CafeRepository", "01_CafeRepo\C1_CafeRepository.csproj", "{95DC39B2-7635-4058-9AEC-0AEB1F1D8A6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C1_CafeTests", "C1_CafeTests\C1_CafeTests.csproj", "{FC850DD5-2EEB-4A34-B989-A3E237F001A3}"
 EndProject
