@@ -20,11 +20,11 @@ Console Application 4 (C4_Outings): contains the files C4_OutingsRepository, C4_
 
 Console Application 5 (C5_Greeting): contains the files C5_GreetingsRepository, C5_GreetingsTests, and C5_GreetingsConsole. Designed for our Outreach Center, this application allows the user to design emails that specifically target three populations: current customers, former customers, and potential new customers.
 
-#2 Languages: All console applications produced using C# and .net.
+#2 Languages: All console applications produced using C# and .NET.
 
 #3 Getting Started: I have no idea what you need to run this in the real world. Works like a charm on Visual Studio Code, but I'm pretty sure the average Komodo Insurance Team Member doesn't have VSC on their computer. Hopefully we will learn how to do this as part of Blue Badge. 
 
 #4 Contact Information: Cindy Morgan camorgan70@gmail.com
 
-#5 Acknowledgements: This product was produced in Visual Studio Code with guidance and direction from Eleven Fifty Academy.
+#5 Acknowledgements: This product was produced in Visual Studio Code with guidance and direction from Eleven Fifty Academy. Menu descriptions courtesy of Metro Diner. Everything else was made up. Any resemblance to real people, living or dead, is purely coincidental.
 
