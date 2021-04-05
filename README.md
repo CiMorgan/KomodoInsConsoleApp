@@ -1,4 +1,4 @@
-# GoldBadgeConsoleApp
+# Komodo Insurance Console App
 Final Challenge for Eleven Fifty Academy Gold Badge
 
 Table of Contents
