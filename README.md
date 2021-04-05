@@ -22,7 +22,7 @@ Console Application 5 (C5_Greeting): contains the files C5_GreetingsRepository, 
 
 #2 Languages: All console applications produced using C# and .NET.
 
-#3 Getting Started: I have no idea what you need to run this in the real world. Works like a charm on Visual Studio Code, but I'm pretty sure the average Komodo Insurance Team Member doesn't have VSC on their computer. Hopefully we will learn how to do this as part of Blue Badge. 
+#3 Getting Started: I have no idea what you need to run this in the real world. Works like a charm on Visual Studio, but I'm pretty sure the average Komodo Insurance Team Member doesn't have VS on their computer. Hopefully we will learn how to do this as part of Blue Badge. 
 
 #4 Contact Information: Cindy Morgan camorgan70@gmail.com
 
